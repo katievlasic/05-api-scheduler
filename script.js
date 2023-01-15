@@ -22,20 +22,34 @@ let workDay = [
 ];
 
 $(function () {
-  // workEl.addClass('col-2 col-md-1 hour text-center py-3');
-  // workEl.append(mainEl);
-
+  let workEl = $(".main");
+  let timeNow = dayjs().format("HA"); // H=the hour and A=AM or PM Upper case, note! rounds down
+  console.log("The appx. time right now is " + timeNow);
   for (let i = 0; i < workDay.length; i++) {
-    let workEl = $(".main");
-    let timeBlock = $("div");
-    timeBlock.addClass("row time-block present");
-
     let newWork = $("<div>");
+    let timeBlock = $("<div>");
+    if (workDay[i] < timeNow) {
+      timeBlock.addClass("row time-block past"); //past=grey
+    } else if (workDay[i] > timeNow) {
+      timeBlock.addClass("row time-block future"); //future=green
+    } else if (timeNow === workDay[i]) {
+      timeBlock.addClass("row time-block present"); //present=red
+    }
+    workEl.append(timeBlock);
     newWork.text(workDay[i]);
+    let newButton = $("<button>");
+    newButton.addClass("btn saveBtn col-2 col-md-1");
+    let textButton = $("<i>");
+    textButton.addClass("fas fa-save");
+    newButton.append(textButton);
+    timeBlock.append(newButton);
     newWork.addClass("col-2 col-md-1 hour text-center py-3");
     // newWork.textarea('empty');
-    workEl.append(newWork);
+    timeBlock.append(newWork);
   }
+
+  //add!!
+  // <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
 
   console.log("workEl " + workEl); // [object HTMLDivElement]
   // TODO: Add a listener for click events on the save button. This code should
