@@ -7,7 +7,37 @@
 var today = dayjs().format("MMMM D, YYYY");
 $("#currentDay").text(today);
 
+let mainEl = document.querySelector(".main");
+let workDay = [
+  "8AM",
+  "9AM",
+  "10AM",
+  "11AM",
+  "12PM",
+  "1PM",
+  "2PM",
+  "3PM",
+  "4PM",
+  "5PM",
+];
+
 $(function () {
+  // workEl.addClass('col-2 col-md-1 hour text-center py-3');
+  // workEl.append(mainEl);
+
+  for (let i = 0; i < workDay.length; i++) {
+    let workEl = $(".main");
+    let timeBlock = $("div");
+    timeBlock.addClass("row time-block present");
+
+    let newWork = $("<div>");
+    newWork.text(workDay[i]);
+    newWork.addClass("col-2 col-md-1 hour text-center py-3");
+    // newWork.textarea('empty');
+    workEl.append(newWork);
+  }
+
+  console.log("workEl " + workEl); // [object HTMLDivElement]
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
