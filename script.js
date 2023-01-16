@@ -36,6 +36,7 @@ $(function () {
       timeBlock.addClass("row time-block past"); // past=grey
     } else if (workDay[i] > timeNow) {
       timeBlock.addClass("row time-block future"); // future=green
+      console.log("time workDay " + workDay[i]);
     } else if (timeNow === workDay[i]) {
       timeBlock.addClass("row time-block present"); // present=red
     }
@@ -50,11 +51,10 @@ $(function () {
     textButton.addClass("fas fa-save");
     newButton.append(textButton);
     timeBlock.append(newButton);
+    // DOM traversal & event listener
   }
 
   console.log("workEl " + workEl + " is the parent."); // [object HTMLDivElement]
-  //add!!
-  // <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -63,12 +63,7 @@ $(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
+
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
