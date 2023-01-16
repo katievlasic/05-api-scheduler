@@ -28,30 +28,34 @@ $(function () {
   for (let i = 0; i < workDay.length; i++) {
     let newWork = $("<div>");
     let timeBlock = $("<div>");
+    newWork.addClass("col-2 col-md-1 hour text-center py-3");
+    // newWork.textarea('empty');
+    timeBlock.append(newWork);
+    timeBlock.attr("id", "hour");
     if (workDay[i] < timeNow) {
-      timeBlock.addClass("row time-block past"); //past=grey
+      timeBlock.addClass("row time-block past"); // past=grey
     } else if (workDay[i] > timeNow) {
-      timeBlock.addClass("row time-block future"); //future=green
+      timeBlock.addClass("row time-block future"); // future=green
     } else if (timeNow === workDay[i]) {
-      timeBlock.addClass("row time-block present"); //present=red
+      timeBlock.addClass("row time-block present"); // present=red
     }
     workEl.append(timeBlock);
     newWork.text(workDay[i]);
+    let addWork = $("<textarea>"); // tag allows multi-line text input
+    addWork.addClass("col-8 col-md-10 description row-3");
+    timeBlock.append(addWork);
     let newButton = $("<button>");
     newButton.addClass("btn saveBtn col-2 col-md-1");
     let textButton = $("<i>");
     textButton.addClass("fas fa-save");
     newButton.append(textButton);
     timeBlock.append(newButton);
-    newWork.addClass("col-2 col-md-1 hour text-center py-3");
-    // newWork.textarea('empty');
-    timeBlock.append(newWork);
   }
 
+  console.log("workEl " + workEl + " is the parent."); // [object HTMLDivElement]
   //add!!
   // <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
 
-  console.log("workEl " + workEl); // [object HTMLDivElement]
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -68,6 +72,4 @@ $(function () {
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
 });
